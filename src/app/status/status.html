@@ -24,16 +24,47 @@
 }
 
 @if(result){
-<div class="ui segment" style="margin-top: 1rem;">
-    <h3>Status gefunden</h3>
+<div class="ui segment">
+    <div class="ui segment" name="statusSender">
+        <h3>Absender</h3>
+        <p>
+            {{ result.senderAddress.street }} {{ result.senderAddress.houseNumber }}<br>
+            {{ result.senderAddress.zip }} {{ result.senderAddress.city }}
+        </p>
+    </div>
 
-    <p><strong>Tracking:</strong> {{ result.trackingId }}</p>
+    <div class="ui segment" name="statusReceiver">
+        <h3>Empfänger</h3>
+        <p>
+            {{ result.receiverAddress.street }} {{ result.receiverAddress.houseNumber }}<br>
+            {{ result.receiverAddress.zip }} {{ result.receiverAddress.city }}
+        </p>
 
-    <p><strong>Empfängeradresse:</strong><br>
-        {{ result.receiverAddress.zip }} {{ result.receiverAddress.city }},
-        {{ result.receiverAddress.street }} {{ result.receiverAddress.houseNumber }}
-    </p>
+    </div>
 
-    <p>Dummy-Daten – später wird hier die echte Status-Historie angezeigt.</p>
+
+    <div name="statusHistory">
+        <h3>Status Historie</h3>
+
+        <table class="ui celled table">
+            <thead>
+                <tr>
+                    <th>Datum</th>
+                    <th>Status</th>
+                    <th>Info</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for(entry of history; track entry.timestamp) {
+                <tr>
+                    <td>{{ entry.timestamp }}</td>
+                    <td>{{ ShipmentStatus[entry.status] }}</td>
+                    <td>{{ entry.info }}</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
 }

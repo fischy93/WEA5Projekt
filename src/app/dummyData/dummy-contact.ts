@@ -14,16 +14,34 @@ export class DummyContactService {
     new Contact(4, 3, ContactType.Phone, '07742 55555')
   ];
 
+  private nextId = 5;
+
+  /** Alle Kontakte des aktuellen Users laden */
   getAll(): Contact[] {
-    return this.contacts;
+    return [...this.contacts];
   }
 
+  /** Kontakte nach User ID */
   getByUserId(userId: number): Contact[] {
     return this.contacts.filter(c => c.customerID === userId);
   }
 
+  /** Einzelkontakt holen */
   getById(id: number): Contact | undefined {
     return this.contacts.find(c => c.id === id);
   }
 
+  /** Kontakt hinzufügen */
+  add(contact: Contact): void {
+    contact.id = this.nextId++;
+    // FÜR PROJEKT: später muss customerID = loggedInUser kommen
+    contact.customerID = 1;
+
+    this.contacts.push(contact);
+  }
+
+  /** Kontakt löschen */
+  delete(id: number): void {
+    this.contacts = this.contacts.filter(c => c.id !== id);
+  }
 }

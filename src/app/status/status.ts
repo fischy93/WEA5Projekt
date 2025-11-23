@@ -2,7 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Shipment } from '../shared/shipment';
-import { Address } from '../shared/address';
+import { DummyShipmentService } from '../dummyData/dummy-shipment';
+import { ShipmentStatusEntry } from '../shared/shipment-status-entry';
+import { Status as ShipmentStatus } from '../shared/status'
 
 @Component({
   selector: 'app-status',
@@ -15,25 +17,20 @@ export class Status {
   tracking: Shipment = new Shipment();
   errorMessage: string | null = null;
   result: Shipment | null = null;
+  history: ShipmentStatusEntry[] = [];
+  ShipmentStatus = ShipmentStatus;
 
-  // DUMMY DATA
-  dummyShipments: Shipment[] = [
-    {
-      trackingId: "abcd123456",
-      receiverAddress: {
-        zip: 4222,
-        city: "Teststadt",
-        street: "Hauptstraße",
-        houseNumber: "1"
-      }
-    } as Shipment
-  ];
+  dummyShipments: Shipment[] = [];
+
+  constructor(private dummy: DummyShipmentService) {
+    // Dummy-Daten laden
+    this.dummyShipments = this.dummy.getAll();
+  }
 
   checkStatus() {
     this.errorMessage = null;
     this.result = null;
 
-    // 1. Trackingnummer prüfen
     if (!this.tracking.trackingId) {
       this.errorMessage = "Bitte Trackingnummer eingeben";
       return;
@@ -48,18 +45,20 @@ export class Status {
       return;
     }
 
-    // 2. PLZ prüfen (Receiver muss existieren!)
     if (!this.tracking.receiverAddress?.zip) {
       this.errorMessage = "Bitte PLZ eingeben";
       return;
     }
 
-    if (Number(found.receiverAddress!.zip) !== Number(this.tracking.receiverAddress!.zip)) {
+    const userZip = Number(this.tracking.receiverAddress.zip);
+    const realZip = Number(found.receiverAddress!.zip);
+
+    if (userZip !== realZip) {
       this.errorMessage = "PLZ stimmt nicht überein";
       return;
     }
-
-    // 3. Erfolg
+    this.history = found.history;
     this.result = found;
+
   }
 }

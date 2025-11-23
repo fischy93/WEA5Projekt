@@ -1,0 +1,27 @@
+import { Address } from "./address";
+import { Parcel } from "./parcel";
+import { ShipmentStatusEntry } from "./shipment-status-entry";
+import { Status } from "./status";
+
+export class Shipment {
+    constructor(
+        public id?: number,
+        public senderAddress: Address = new Address(),
+        public receiverAddress: Address = new Address(),
+        public status?: Status,
+        public parcel?: Parcel,
+        public price?: number,
+        public trackingId?: string,
+        public history: ShipmentStatusEntry[] = []
+    ) { }
+
+    get senderFullAddress(): string {
+        return `${this.senderAddress?.zip} ${this.senderAddress?.city}, ${this.senderAddress?.street} ${this.senderAddress?.houseNumber}`;
+    }
+    get receiverFullAddress(): string {
+        return `${this.receiverAddress?.zip} ${this.receiverAddress?.city}, ${this.receiverAddress?.street} ${this.receiverAddress?.houseNumber}`;
+    }
+
+
+
+}

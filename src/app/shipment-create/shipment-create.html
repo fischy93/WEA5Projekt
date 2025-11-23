@@ -1,0 +1,99 @@
+<div class="ui container" style="margin-top: 2rem; max-width: 500px;">
+
+    <h2 class="ui header">
+        <i class="box icon"></i>
+        <div class="content">
+            Neuen Paketversand anlegen
+            <div class="sub header">Bitte Versanddaten eingeben</div>
+        </div>
+    </h2>
+
+    <form class="ui form" (ngSubmit)="submitShipment()">
+
+        <div class="ui segment">
+            <h4 class="ui dividing header">Absender</h4>
+
+            <div class="field">
+                <label>Straße</label>
+                <input type="text" [(ngModel)]="sender.street" name="senderStreet">
+            </div>
+
+            <div class="field">
+                <label>Hausnummer</label>
+                <input type="text" [(ngModel)]="sender.houseNumber" name="senderHouseNumber">
+            </div>
+
+            <div class="field">
+                <label>PLZ</label>
+                <input type="number" [(ngModel)]="sender.zip" name="senderZip">
+            </div>
+
+            <div class="field">
+                <label>Stadt</label>
+                <input type="text" [(ngModel)]="sender.city" name="senderCity">
+            </div>
+        </div>
+
+        <div class="ui segment">
+            <h4 class="ui dividing header">Empfänger</h4>
+
+            <div class="field">
+                <label>Straße</label>
+                <input type="text" [(ngModel)]="receiver.street" name="receiverStreet">
+            </div>
+
+            <div class="field">
+                <label>Hausnummer</label>
+                <input type="text" [(ngModel)]="receiver.houseNumber" name="receiverHouseNumber">
+            </div>
+
+            <div class="field">
+                <label>PLZ</label>
+                <input type="number" [(ngModel)]="receiver.zip" name="receiverZip" minlength="4" maxlength="4"
+                    pattern="^[0-9]{4}$">
+            </div>
+
+            <div class="field">
+                <label>Stadt</label>
+                <input type="text" [(ngModel)]="receiver.city" name="receiverCity">
+            </div>
+        </div>
+
+        <div class="ui segment">
+            <h4 class="ui dividing header">Paketdaten</h4>
+
+            <div class="field">
+                <label>Länge</label>
+                <input type="number" [(ngModel)]="parcel.length" name="parcelLength">
+            </div>
+
+            <div class="field">
+                <label>Breite</label>
+                <input type="number" [(ngModel)]="parcel.width" name="parcelWidth">
+            </div>
+
+            <div class="field">
+                <label>Höhe</label>
+                <input type="number" [(ngModel)]="parcel.height" name="parcelHeight">
+            </div>
+
+            <div class="field">
+                <label>Gewicht (kg)</label>
+                <input type="number" [(ngModel)]="parcel.weight" name="parcelWeight">
+            </div>
+        </div>
+
+        <button class="ui primary button" type="submit">
+            <i class="search icon"></i>
+            Paket versenden
+        </button>
+
+    </form>
+
+    @if(errorMessage){
+    <div class="ui message red">
+        {{ errorMessage }}
+    </div>
+    }
+
+</div>

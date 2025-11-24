@@ -39,6 +39,20 @@ export class DummyShipmentService {
         new ShipmentStatusEntry("2025-02-10 08:00", Status.Registered),
         new ShipmentStatusEntry("2025-02-11 06:40", Status.Received, "Linz Filiale"),
       ]
+    ),
+
+    new Shipment(
+      3,
+      new Address("Herrengasse", "4", 8010, "Graz"),
+      new Address("Bindergasse", "7", 4020, "Linz"),
+      Status.PackageInTransit,
+      new Parcel(20, 10, 10, 0.8),
+      7.50,
+      "ABCD123456",
+      [
+        new ShipmentStatusEntry("2025-10-30 08:00", Status.Registered),
+        new ShipmentStatusEntry("2025-11-18 06:40", Status.PackageInTransit, "Linz Filiale"),
+      ]
     )
 
   ];

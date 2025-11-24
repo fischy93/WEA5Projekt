@@ -1,12 +1,23 @@
 <h1>Willkommen bei DeliFHery</h1>
-<div class="ui menu">
-    <a routerLink="/price" class="item">Preis berechnen</a>
-    <a routerLink="/shipment-create" class="item">Paket anmelden</a>
-    <a routerLink="/tracking" class="item">Tracking</a>
-    <a routerLink="/notification" class="item">Benachrichtigungen</a>
-    <a routerLink="/contacts" class="item">Kontakte</a>
-    <a routerLink="/stats" class="item">Statistik</a>
-</div>
+
+<nav class="clean-nav">
+
+    @if (auth.isLoggedIn()) {
+    <a routerLink="/price">Preis berechnen</a>
+    <a routerLink="/shipment-create">Paket anmelden</a>
+    <a routerLink="/contacts">Kontakte</a>
+    <a routerLink="/notification">Benachrichtigungen</a>
+    <a routerLink="/stats">Statistik</a>
+    <a routerLink="/tracking">Tracking</a>
+    }
+
+    @if (!auth.isLoggedIn()) {
+    <button (click)="auth.login()" class="nav-button">Login</button>
+    } @else {
+    <button (click)="auth.logout()" class="nav-button logout">Logout</button>
+    }
+
+</nav>
 
 <div style="padding: 2rem;">
     <router-outlet></router-outlet>

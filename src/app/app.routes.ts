@@ -1,8 +1,5 @@
 import { Routes } from '@angular/router';
 
-import { CustomerList } from './customer-list/customer-list';
-import { ContactList } from './contact-managment/contact-list/contact-list';
-import { ShipmentList } from './shipment-list/shipment-list';
 import { PriceCalculator } from './price-calculator/price-calculator';
 import { ShipmentCreate } from './shipment-create/shipment-create';
 import { Status } from './status/status';
@@ -10,12 +7,17 @@ import { ContactManagement } from './contact-managment/contact-managment';
 import { Notification } from './notification/notification';
 
 export const routes: Routes = [
-    { path: 'customers', component: CustomerList },
-    { path: 'contacts', component: ContactList },
-    { path: 'shipments', component: ShipmentList },
+    { path: '', redirectTo: 'price', pathMatch: 'full' },
     { path: 'price', component: PriceCalculator },
-    { path: 'ship', component: ShipmentCreate },
-    { path: 'status', component: Status },
-    { path: 'contactManager', component: ContactManagement },
-    { path: 'notification', component: Notification }
+    { path: 'shipment-create', component: ShipmentCreate },
+    { path: 'tracking', component: Status },
+    { path: 'contacts', component: ContactManagement },
+    { path: 'notification', component: Notification },
+
+    // Für Webserver, die index.html anhängen:
+    {
+        path: 'index.html',
+        redirectTo: 'price',
+        pathMatch: 'full'
+    }
 ];

@@ -1,2 +1,12 @@
 <h1>Willkommen bei DeliFHery</h1>
-<router-outlet></router-outlet>
+<div class="ui menu">
+    <a routerLink="/price" class="item">Preis berechnen</a>
+    <a routerLink="/shipment-create" class="item">Paket anmelden</a>
+    <a routerLink="/tracking" class="item">Tracking</a>
+    <a routerLink="/notification" class="item">Benachrichtigungen</a>
+    <a routerLink="/contacts" class="item">Kontakte</a>
+</div>
+
+<div style="padding: 2rem;">
+    <router-outlet></router-outlet>
+</div>

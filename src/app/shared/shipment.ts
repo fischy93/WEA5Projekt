@@ -1,4 +1,5 @@
 import { Address } from "./address";
+import { Customer } from "./customer";
 import { Parcel } from "./parcel";
 import { ShipmentStatusEntry } from "./shipment-status-entry";
 import { Status } from "./status";
@@ -12,7 +13,11 @@ export class Shipment {
         public parcel?: Parcel,
         public price?: number,
         public trackingId?: string,
-        public history: ShipmentStatusEntry[] = []
+        public history: ShipmentStatusEntry[] = [],
+        public customerId?: number,
+        public notificationsEnabled?: boolean,
+
+
     ) { }
 
     get senderFullAddress(): string {

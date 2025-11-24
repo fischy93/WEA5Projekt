@@ -7,6 +7,7 @@ import { PriceCalculator } from './price-calculator/price-calculator';
 import { ShipmentCreate } from './shipment-create/shipment-create';
 import { Status } from './status/status';
 import { ContactManagement } from './contact-managment/contact-managment';
+import { Notification } from './notification/notification';
 
 export const routes: Routes = [
     { path: 'customers', component: CustomerList },
@@ -15,5 +16,6 @@ export const routes: Routes = [
     { path: 'price', component: PriceCalculator },
     { path: 'ship', component: ShipmentCreate },
     { path: 'status', component: Status },
-    { path: 'contactManager', component: ContactManagement }
+    { path: 'contactManager', component: ContactManagement },
+    { path: 'notification', component: Notification }
 ];

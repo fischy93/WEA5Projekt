@@ -8,11 +8,11 @@ import { Notification } from './components/notification/notification';
 import { Statistics } from './components/statistics/statistics';
 import { AuthComponent } from './components/auth/auth'
 import { AuthGuard } from './guards/auth-guard';
+import { CustomerList } from './components/customer-list/customer-list'
 
 export const routes: Routes = [
     { path: '', redirectTo: 'price', pathMatch: 'full' },
 
-    { path: 'auth', component: AuthComponent },
 
     { path: 'price', component: PriceCalculator, },
     { path: 'shipment-create', component: ShipmentCreate, canActivate: [AuthGuard] },
@@ -20,6 +20,10 @@ export const routes: Routes = [
     { path: 'contacts', component: ContactManagement, canActivate: [AuthGuard] },
     { path: 'notification', component: Notification, canActivate: [AuthGuard] },
     { path: 'stats', component: Statistics, canActivate: [AuthGuard] },
+    { path: 'customers', component: CustomerList },
+    { path: 'customers/:id', component: CustomerList },
+
+
 
     { path: 'index.html', redirectTo: 'price', pathMatch: 'full' }
 ];

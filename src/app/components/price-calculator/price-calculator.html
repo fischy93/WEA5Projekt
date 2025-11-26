@@ -1,0 +1,89 @@
+<div class="ui container" style="margin-top: 2rem; max-width: 500px;">
+
+    <h2 class="ui header">
+        <i class="calculator icon"></i>
+        <div class="content">
+            Preisberechnung
+            <div class="sub header">Bitte Paketdaten eingeben</div>
+        </div>
+    </h2>
+
+    <form class="ui form" (submit)="calculatePrice($event)">
+
+        <div class="field">
+            <label>Länge (cm)</label>
+            <input type="number" [(ngModel)]="length" name="length">
+        </div>
+
+        <div class="field">
+            <label>Breite (cm)</label>
+            <input type="number" [(ngModel)]="width" name="width">
+        </div>
+
+        <div class="field">
+            <label>Höhe (cm)</label>
+            <input type="number" [(ngModel)]="height" name="height">
+        </div>
+
+        <div class="field">
+            <label>Gewicht (kg)</label>
+            <input type="number" step="0.1" [(ngModel)]="weight" name="weight">
+        </div>
+
+        <button class="ui primary button" type="submit">
+            <i class="search icon"></i>
+            Preis berechnen
+        </button>
+
+
+
+
+    </form>
+    @if(errorMessage){
+    <div class="ui message red">
+        {{ errorMessage }}
+    </div>
+    }
+
+    @if (price != null){
+    <div class="ui message green">
+        <div class="header">Berechneter Preis</div>
+        <p>{{ price }} €</p>
+    </div>
+    }
+
+    <h3 class="ui header">Preisregeln</h3>
+    <table class="ui celled table">
+        <thead>
+            <tr>
+                <th>Regel</th>
+                <th>Bedingung</th>
+                <th>Zuschlag</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Basispreis</td>
+                <td>Immer</td>
+                <td>5 €</td>
+            </tr>
+            <tr>
+                <td>Gewichtszuschlag</td>
+                <td>> 1 kg</td>
+                <td>jedes zusätzliche 1 kg +0.50 €</td>
+            </tr>
+            <tr>
+                <td>Volumenzuschlag</td>
+                <td>Länge + Breite + Höhe > 100 cm</td>
+                <td>+3 €</td>
+            </tr>
+            <tr>
+                <td>Schweres Paket</td>
+                <td>> 5 kg</td>
+                <td>+4 €</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>

@@ -1,0 +1,14 @@
+<h2>Zustellstatistik</h2>
+
+<div class="ui form" style="margin-bottom: 1rem;">
+    <div class="field">
+        <label>Zeitraum auswählen</label>
+        <select [(ngModel)]="selectedRange" (change)="onRangeChange()">
+            <option value="week">letzen sieben Tage</option>
+            <option value="month">Monat</option>
+            <option value="year">Jahr</option>
+        </select>
+    </div>
+</div>
+
+<canvas id="statsChart"></canvas>

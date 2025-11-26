@@ -40,5 +40,11 @@ export class ShipmentService {
       .pipe(catchError(this.errorHandler));
   }
 
+  getAllByCustomer(customerId: number): Observable<Shipment[]> {
+    return this.http.get<Shipment[]>(`${this.baseUrl}/user/${customerId}`)
+      .pipe(catchError(this.errorHandler));
+  }
+
+
 
 }

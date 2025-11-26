@@ -5,6 +5,8 @@ import { Chart } from 'chart.js/auto';
 import { DummyShipmentService } from '../dummyData/dummy-shipment';
 import { Shipment } from '../../shared/shipment';
 import { ShipmentStatusEntry } from '../../shared/shipment-status-entry';
+import { SessionService } from '../../services/session.service';
+import { ShipmentService } from '../../services/shipment.service';
 
 @Component({
   selector: 'statistics',
@@ -20,12 +22,22 @@ export class Statistics implements OnInit {
 
   chart: Chart | null = null;
 
-  constructor(private dummy: DummyShipmentService) { }
+  constructor(
+    private shipmentService: ShipmentService,
+    private sessionService: SessionService
+  ) { }
+
 
   ngOnInit() {
-    this.shipments = this.dummy.getAll();
-    this.renderChart();
+    this.shipmentService.getAllByCustomer(this.sessionService.customerId)
+      .subscribe(res => {
+        if (res) {
+          this.shipments = res;
+          this.renderChart();
+        }
+      });
   }
+
 
   // Datum aus dem letzten History-Eintrag (echtes Shipment-Datum)
   private getShipmentDate(s: Shipment): Date {

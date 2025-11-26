@@ -12,7 +12,7 @@ export class ShipmentService {
   private readonly http = inject(HttpClient);
 
   private errorHandler(error: any): Observable<any> {
-    console.error('CustomerService API-Fehler:', error);
+    console.error('ShipmentService API-Fehler:', error);
     return of(null);
   }
 
@@ -26,6 +26,17 @@ export class ShipmentService {
 
   create(newShipment: Shipment): Observable<Shipment> {
     return this.http.post<Shipment>(this.baseUrl, newShipment)
+      .pipe(catchError(this.errorHandler));
+  }
+
+  toggleNotifications(trackingId: string, zip: number, customerId: number, enable: boolean) {
+    const body = { trackingId, zip, customerId };
+
+    const endpoint = enable
+      ? `${this.baseUrl}/notify`
+      : `${this.baseUrl}/notify/disable`;
+
+    return this.http.post<any>(endpoint, body)
       .pipe(catchError(this.errorHandler));
   }
 

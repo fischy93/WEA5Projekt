@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Shipment } from '../../shared/shipment';
-import { DummyShipmentService } from '../dummyData/dummy-shipment';
 import { ShipmentStatusEntry } from '../../shared/shipment-status-entry';
 import { Status as ShipmentStatus } from '../../shared/status'
 import { SessionService } from '../../services/session.service';

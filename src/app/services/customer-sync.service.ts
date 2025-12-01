@@ -13,11 +13,10 @@ export class CustomerSyncService {
     if (!claims) return null;
 
     return {
-      id: 0,                     // id 0 weil backend eine id erwartet
+      id: claims.sub,
       FirstName: claims.given_name,
       LastName: claims.family_name,
       UserName: claims.preferred_username,
-      Password: claims.sub   // Password als KeycloakId verwend damit ich backend nicht ändern muss
     };
   }
 }

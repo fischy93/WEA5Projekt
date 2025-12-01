@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Chart } from 'chart.js/auto';
-import { DummyShipmentService } from '../dummyData/dummy-shipment';
 import { Shipment } from '../../shared/shipment';
 import { ShipmentStatusEntry } from '../../shared/shipment-status-entry';
 import { SessionService } from '../../services/session.service';

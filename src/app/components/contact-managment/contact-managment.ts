@@ -40,14 +40,9 @@ export class ContactManagement implements OnInit {
 
 
   ngOnInit() {
-    const interval = setInterval(() => {
-      if (this.session.customerId > 0) {
-        this.customerId = this.session.customerId;
-        this.loadContacts();
-        clearInterval(interval);
-      }
-    }, 100);
+    this.loadContacts();
   }
+
 
 
 
@@ -56,7 +51,7 @@ export class ContactManagement implements OnInit {
   loadContacts() {
     this.error = null;
 
-    this.contactService.getAllForCustomer(this.customerId).subscribe(res => {
+    this.contactService.getAllForCustomer().subscribe(res => {
       if (!res) {
         this.error = 'Laden fehlgeschlagen';
         return;
@@ -69,8 +64,8 @@ export class ContactManagement implements OnInit {
   addContact() {
     this.error = null;
 
-    // CustomerID setzen
-    this.newContact.customerID = this.customerId;
+
+
 
     if (!this.newContact.data || this.newContact.cType === undefined) {
       this.error = 'Bitte gültige Kontaktinformationen eingeben';

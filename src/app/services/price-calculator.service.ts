@@ -19,7 +19,7 @@ export class PriceCalculatorService {
 
   getPrice(newParcel: Parcel): Observable<number> {
     return this.http
-      .post<number>(this.baseUrl, newParcel)
+      .post<number>(this.baseUrl, { parcel: newParcel })
       .pipe(catchError(this.errorHandler));
   }
 

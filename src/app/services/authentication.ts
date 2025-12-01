@@ -30,6 +30,9 @@ export class AuthenticationService {
     const claims: any = this.oauthService.getIdentityClaims();
     return claims ? claims.preferred_username : null;
   }
+  getAccessToken(): string | null {
+    return this.oauthService.getAccessToken();
+  }
 
 
 }

@@ -53,37 +53,83 @@
     }
 
     <h3 class="ui header">Preisregeln</h3>
+    @if (!isDecember()) {
     <table class="ui celled table">
         <thead>
             <tr>
-                <th>Regel</th>
-                <th>Bedingung</th>
-                <th>Zuschlag</th>
+                <th>Paketdaten</th>
+                <th>Volumenpreis (L×B×H / 5000)</th>
+                <th>Gewichtspreis (kg × 1.2)</th>
+                <th>Endpreis (Maximum)</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>Basispreis</td>
-                <td>Immer</td>
-                <td>5 €</td>
+                <td>10×10×10 cm, 1 kg</td>
+                <td>0.20 €</td>
+                <td>1.20 €</td>
+                <td><strong>1.20 €</strong></td>
             </tr>
             <tr>
-                <td>Gewichtszuschlag</td>
-                <td>> 1 kg</td>
-                <td>jedes zusätzliche 1 kg +0.50 €</td>
+                <td>20×20×20 cm, 2 kg</td>
+                <td>1.60 €</td>
+                <td>2.40 €</td>
+                <td><strong>2.40 €</strong></td>
             </tr>
             <tr>
-                <td>Volumenzuschlag</td>
-                <td>Länge + Breite + Höhe > 100 cm</td>
-                <td>+3 €</td>
+                <td>50×30×20 cm, 3 kg</td>
+                <td>6.00 €</td>
+                <td>3.60 €</td>
+                <td><strong>6.00 €</strong></td>
             </tr>
             <tr>
-                <td>Schweres Paket</td>
-                <td>> 5 kg</td>
-                <td>+4 €</td>
+                <td>20×20×20 cm, 10 kg</td>
+                <td>1.60 €</td>
+                <td>12.00 €</td>
+                <td><strong>12.00 €</strong></td>
             </tr>
         </tbody>
     </table>
+    }
+    @else {
+    <table class="ui celled table">
+        <thead>
+            <tr>
+                <th>Paketdaten</th>
+                <th>Volumenpreis</th>
+                <th>Gewichtspreis</th>
+                <th>Endpreis (−10% Dezember)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>10×10×10 cm, 1 kg</td>
+                <td>0.20 €</td>
+                <td>1.20 €</td>
+                <td><strong>1.08 €</strong></td>
+            </tr>
+            <tr>
+                <td>20×20×20 cm, 2 kg</td>
+                <td>1.60 €</td>
+                <td>2.40 €</td>
+                <td><strong>2.16 €</strong></td>
+            </tr>
+            <tr>
+                <td>50×30×20 cm, 3 kg</td>
+                <td>6.00 €</td>
+                <td>3.60 €</td>
+                <td><strong>5.40 €</strong></td>
+            </tr>
+            <tr>
+                <td>20×20×20 cm, 10 kg</td>
+                <td>1.60 €</td>
+                <td>12.00 €</td>
+                <td><strong>10.80 €</strong></td>
+            </tr>
+        </tbody>
+    </table>
+    }
+
 
 
 </div>

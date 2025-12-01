@@ -14,14 +14,14 @@ export const routes: Routes = [
     { path: '', redirectTo: 'price', pathMatch: 'full' },
 
 
-    { path: 'price', component: PriceCalculator, },
+    { path: 'price', component: PriceCalculator, canActivate: [AuthGuard] },
     { path: 'shipment-create', component: ShipmentCreate, canActivate: [AuthGuard] },
     { path: 'tracking', component: Status, canActivate: [AuthGuard] },
     { path: 'contacts', component: ContactManagement, canActivate: [AuthGuard] },
     { path: 'notification', component: Notification, canActivate: [AuthGuard] },
     { path: 'stats', component: Statistics, canActivate: [AuthGuard] },
     { path: 'customers', component: CustomerList },
-    { path: 'customers/:id', component: CustomerList },
+    //{ path: 'customers/:id', component: CustomerList}, zur ausgabe aller Customers
 
 
 

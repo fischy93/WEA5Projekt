@@ -10,7 +10,6 @@
     <a routerLink="/stats">Statistik</a>
     <a routerLink="/tracking">Tracking</a>
     }
-    <a routerLink="/customers">Alle Kunden Anzeigen</a>
 
     @if (!auth.isLoggedIn()) {
     <button (click)="auth.login()" class="nav-button">Login</button>
@@ -21,6 +20,8 @@
 
 </nav>
 
+
+<div>Um unsern Serviec nutzen zu können bitte Anmelden </div>
 <div style="padding: 2rem;">
     <router-outlet></router-outlet>
 </div>

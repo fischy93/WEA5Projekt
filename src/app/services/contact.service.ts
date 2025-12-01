@@ -45,10 +45,12 @@ export class ContactService {
       .pipe(catchError(this.errorHandler));
   }
 
-  // GET api/customer/{customerID}/contact
-  getAllForCustomer(customerId: number): Observable<Contact[] | null> {
+  // GET api/customer/contact
+  getAllForCustomer(): Observable<Contact[] | null> {
     return this.http
-      .get<Contact[]>(`${environment.api}/customer/${customerId}/contact`)
+      .get<Contact[]>(`${environment.api}/customer/contact`)
       .pipe(catchError(this.errorHandler));
   }
+
+
 }

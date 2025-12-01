@@ -52,5 +52,9 @@ export class PriceCalculator {
       this.price = result;   // simple: backend liefert eine Zahl zurück
     });
   }
+  isDecember(): boolean {
+    return new Date().getMonth() === 10; // Dezember = 11
+  }
+
 
 }

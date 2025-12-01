@@ -9,8 +9,8 @@ export const authConfig: AuthConfig = {
     userinfoEndpoint: 'http://localhost:8080/realms/wea5/protocol/openid-connect/userinfo',
 
     clientId: 'wea5-demo',
-    redirectUri: window.location.origin + '/index.html',
-    silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
+    redirectUri: window.location.origin,
+    silentRefreshRedirectUri: window.location.origin, //+ '/silent-refresh.html'
     scope: 'profile email',
     silentRefreshTimeout: 5000, // For faster testing
     timeoutFactor: 0.25, // For faster testing

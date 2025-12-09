@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { Shipment } from '../../shared/shipment';
 import { ShipmentService } from '../../services/shipment.service';
 import { SessionService } from '../../services/session.service';
+import { NotificationService } from '../../services/notification.service';
+import { Address } from '../../shared/address';
 
 @Component({
   selector: 'notification',
@@ -18,11 +20,12 @@ export class Notification {
   successMessage: string | null = null;
 
   constructor(
-    private shipmentService: ShipmentService,
+    private notificationService: NotificationService,
     private sessionService: SessionService
-  ) { }
+  ) { this.tracking.receiverAddress = new Address("", "", 0, ""); };
 
-  private validateInput(): { trackingId: string; zip: number; customerId: number } | null {
+
+  private validateInput(): { trackingId: string; zip: number; } | null {
     this.errorMessage = null;
     this.successMessage = null;
 
@@ -39,7 +42,7 @@ export class Notification {
     return {
       trackingId: this.tracking.trackingId.trim(),
       zip: Number(this.tracking.receiverAddress.zip),
-      customerId: this.sessionService.customerId
+
     };
   }
 
@@ -47,44 +50,31 @@ export class Notification {
     const data = this.validateInput();
     if (!data) return;
 
-    this.shipmentService.toggleNotifications(
-      data.trackingId,
-      data.zip,
-      data.customerId,
-      true
-    ).subscribe(res => {
-      if (!res) {
-        this.errorMessage = "Konnte Benachrichtigungen nicht aktivieren.";
-        return;
-      }
-
-      // WICHTIG: Zustand aus Backend setzen
-      this.tracking.notificationsEnabled = res.notificationsEnabled;
-
-      this.successMessage = "Benachrichtigungen aktiviert.";
-    });
+    this.notificationService.AktivateNotification(data.trackingId, data.zip)
+      .subscribe({
+        next: () => {
+          this.successMessage = "Benachrichtigungen aktiviert.";
+        },
+        error: () => {
+          this.errorMessage = "Konnte Benachrichtigungen nicht aktivieren.";
+        }
+      });
   }
 
   trackingDeactivate() {
     const data = this.validateInput();
     if (!data) return;
 
-    this.shipmentService.toggleNotifications(
-      data.trackingId,
-      data.zip,
-      data.customerId,
-      false
-    ).subscribe(res => {
-      if (!res) {
-        this.errorMessage = "Konnte Benachrichtigungen nicht deaktivieren.";
-        return;
-      }
+    this.notificationService.DeaktivateNotification(data.trackingId, data.zip)
+      .subscribe({
+        next: () => {
+          this.successMessage = "Benachrichtigungen deaktiviert.";
+        },
+        error: () => {
+          this.errorMessage = "Konnte Benachrichtigungen nicht deaktivieren.";
+        }
+      });
 
-      // WICHTIG: Zustand aus Backend setzen
-      this.tracking.notificationsEnabled = res.notificationsEnabled;
-
-      this.successMessage = "Benachrichtigungen deaktiviert.";
-    });
   }
 
 }

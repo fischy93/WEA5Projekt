@@ -2,9 +2,8 @@
 
 <div>
 
-    @if (!tracking.notificationsEnabled) {
-    <!-- Aktivieren -->
-    <form class="ui form" (ngSubmit)="trackingActivate()">
+
+    <form class="ui form">
         <div class="field">
             <label>Trackingnummer</label>
             <input type="text" [(ngModel)]="tracking.trackingId" name="notificationTrackingNumber">
@@ -15,33 +14,21 @@
             <input type="number" [(ngModel)]="tracking.receiverAddress.zip" name="notificationZip">
         </div>
 
-        <button class="ui primary button" type="submit">
+        <button class="ui primary button" type="button" (click)="trackingActivate()">
             <i class="bell icon"></i>
             Benachrichtigung aktivieren
         </button>
-    </form>
 
-    } @else {
-
-    <!-- Deaktivieren -->
-    <form class="ui form" (ngSubmit)="trackingDeactivate()">
-        <div class="field">
-            <label>Trackingnummer</label>
-            <input type="text" [(ngModel)]="tracking.trackingId" name="notificationTrackingNumber">
-        </div>
-
-        <div class="field">
-            <label>PLZ</label>
-            <input type="number" [(ngModel)]="tracking.receiverAddress.zip" name="notificationZip">
-        </div>
-
-        <button class="ui red button" type="submit">
+        <button class="ui red button" type="button" (click)="trackingDeactivate()">
             <i class="bell slash icon"></i>
             Benachrichtigung deaktivieren
         </button>
     </form>
 
-    }
+
+
+
+
     @if(successMessage){
     <div class="ui message green">
         {{ successMessage }}

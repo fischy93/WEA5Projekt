@@ -9,13 +9,13 @@ export class Shipment {
         public id?: number,
         public senderAddress: Address = new Address(),
         public receiverAddress: Address = new Address(),
-        public status?: Status,
+        public status?: String,
         public parcel?: Parcel,
         public price?: number,
         public trackingId?: string,
         public history: ShipmentStatusEntry[] = [],
-        public customerId?: number,
-        public notificationsEnabled?: boolean,
+        public customerId?: string,
+        public url?: string,
 
 
     ) { }

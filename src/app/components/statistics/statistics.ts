@@ -28,7 +28,7 @@ export class Statistics implements OnInit {
 
 
   ngOnInit() {
-    this.shipmentService.getAllByCustomer(this.sessionService.customerId)
+    this.shipmentService.getAllByCustomer()
       .subscribe(res => {
         if (res) {
           this.shipments = res;
@@ -86,9 +86,10 @@ export class Statistics implements OnInit {
     // 0 = Registered
     // 1 = PackageInTransit
     // 2 = Received
-    const registered = filtered.filter(s => s.status === 0).length;
-    const inTransit = filtered.filter(s => s.status === 1).length;
-    const delivered = filtered.filter(s => s.status === 2).length;
+    const registered = filtered.filter(s => s.status === "Registered").length;
+    const inTransit = filtered.filter(s => s.status === "PackageInTransit").length;
+    const delivered = filtered.filter(s => s.status === "Received").length;
+
 
     this.chart = new Chart('statsChart', {
       type: 'doughnut',

@@ -1,0 +1,6 @@
+<div class="ui segment green" *ngIf="shipment">
+    <h3 class="ui header">Paket erfolgreich bezahlt!</h3>
+
+    <p><strong>Tracking-ID:</strong> {{ shipment.trackingId }}</p>
+    <p><strong>Preis:</strong> {{ shipment.price }} €</p>
+</div>

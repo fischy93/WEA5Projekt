@@ -24,24 +24,14 @@ export class ShipmentService {
       .pipe(catchError(this.errorHandler));
   }
 
-  create(newShipment: Shipment): Observable<Shipment> {
-    return this.http.post<Shipment>(this.baseUrl, newShipment)
+  create(newShipment: Shipment): Observable<{ createdShipment: Shipment }> {
+    return this.http.post<{ createdShipment: Shipment }>(this.baseUrl, newShipment)
       .pipe(catchError(this.errorHandler));
   }
 
-  toggleNotifications(trackingId: string, zip: number, customerId: number, enable: boolean) {
-    const body = { trackingId, zip, customerId };
 
-    const endpoint = enable
-      ? `${this.baseUrl}/notify`
-      : `${this.baseUrl}/notify/disable`;
-
-    return this.http.post<any>(endpoint, body)
-      .pipe(catchError(this.errorHandler));
-  }
-
-  getAllByCustomer(customerId: number): Observable<Shipment[]> {
-    return this.http.get<Shipment[]>(`${this.baseUrl}/user/${customerId}`)
+  getAllByCustomer(): Observable<Shipment[]> {
+    return this.http.get<Shipment[]>(`${this.baseUrl}`)
       .pipe(catchError(this.errorHandler));
   }
 

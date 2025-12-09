@@ -9,6 +9,7 @@ import { Statistics } from './components/statistics/statistics';
 import { AuthComponent } from './components/auth/auth'
 import { AuthGuard } from './guards/auth-guard';
 import { CustomerList } from './components/customer-list/customer-list'
+import { PaymentSuccess } from './components/payment-success/payment-success';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'price', pathMatch: 'full' },
@@ -21,6 +22,9 @@ export const routes: Routes = [
     { path: 'notification', component: Notification, canActivate: [AuthGuard] },
     { path: 'stats', component: Statistics, canActivate: [AuthGuard] },
     { path: 'customers', component: CustomerList },
+    { path: 'payment/success', component: PaymentSuccess, canActivate: [AuthGuard] },
+
+
     //{ path: 'customers/:id', component: CustomerList}, zur ausgabe aller Customers
 
 

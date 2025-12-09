@@ -7,6 +7,7 @@ import { Shipment } from '../../shared/shipment';
 import { Status } from '../../shared/status';
 import { SessionService } from '../../services/session.service';
 import { ShipmentService } from '../../services/shipment.service';
+import { environment } from '../../environments/environments';
 
 @Component({
   selector: 'shipment-create',
@@ -45,13 +46,17 @@ export class ShipmentCreate {
       receiverAddress: this.receiver,
       parcel: this.parcel,
       customerId: this.sessionService.customerId,
-      notificationsEnabled: false
+      url: `${environment.api}/payment/success`
     };
 
     // POST an Backend
     this.shipmentService.create(body as any).subscribe({
       next: (res) => {
-        this.createdShipment = res; // Backend antwortet mit Shipment
+        this.createdShipment = res.createdShipment; // Backend antwortet mit Shipment
+        if (this.createdShipment.url) {
+          window.location.href = this.createdShipment.url;
+        }
+
       },
       error: () => {
         this.errorMessage = "Fehler beim Anlegen der Sendung.";

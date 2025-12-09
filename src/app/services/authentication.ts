@@ -9,7 +9,7 @@ export class AuthenticationService {
 
 
   login(): boolean {
-    this.oauthService.initCodeFlow(); // is recommended nowadays
+    this.oauthService.initCodeFlow();
     return true;
   }
 

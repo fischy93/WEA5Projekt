@@ -1,6 +1,13 @@
-<div class="ui segment green" *ngIf="shipment">
-    <h3 class="ui header">Paket erfolgreich bezahlt!</h3>
+@if (shipment != null) {
+<div class="ui segment green">
+    <h3 class="ui header">Zahlung erfolgreich!</h3>
 
     <p><strong>Tracking-ID:</strong> {{ shipment.trackingId }}</p>
     <p><strong>Preis:</strong> {{ shipment.price }} €</p>
 </div>
+
+} @else {
+<div class="ui segment red">
+    <h3 class="ui header">Zahlung fehlgeschlagen!</h3>
+</div>
+}

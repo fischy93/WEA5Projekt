@@ -46,21 +46,30 @@ export class ShipmentCreate {
       receiverAddress: this.receiver,
       parcel: this.parcel,
       customerId: this.sessionService.customerId,
-      url: `${environment.api}/payment/success`
+      url: "http://localhost:4200/payment/"
+
     };
 
     // POST an Backend
     this.shipmentService.create(body as any).subscribe({
       next: (res) => {
-        this.createdShipment = res.createdShipment; // Backend antwortet mit Shipment
+        this.createdShipment = res.createdShipment;
+
+        // alles speichern, was ich nach dem Redirect brauche
+        localStorage.setItem("pendingShipment", JSON.stringify({
+          trackingId: this.createdShipment.trackingId,
+          zip: this.createdShipment.receiverAddress.zip
+        }));
+
+        // Weiter zur Bezahlseite
         if (this.createdShipment.url) {
           window.location.href = this.createdShipment.url;
         }
-
       },
       error: () => {
         this.errorMessage = "Fehler beim Anlegen der Sendung.";
       }
     });
+
   }
 }

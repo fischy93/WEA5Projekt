@@ -1,5 +1,7 @@
 export enum Status {
     Registered = 0,
-    PackageInTransit = 1,
-    Received = 2
+    Received = 1,
+    PackageInTransit = 2,
+    PackageInDelivery = 3,
+    Delivered = 4
 }

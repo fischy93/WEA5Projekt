@@ -22,7 +22,7 @@ export const routes: Routes = [
     { path: 'notification', component: Notification, canActivate: [AuthGuard] },
     { path: 'stats', component: Statistics, canActivate: [AuthGuard] },
     { path: 'customers', component: CustomerList },
-    { path: 'payment/success', component: PaymentSuccess, canActivate: [AuthGuard] },
+    { path: 'payment', component: PaymentSuccess },
 
 
     //{ path: 'customers/:id', component: CustomerList}, zur ausgabe aller Customers

@@ -16,12 +16,33 @@ export class PaymentSuccess implements OnInit {
   constructor(private route: ActivatedRoute, private shipmentService: ShipmentService) { }
 
   ngOnInit() {
-    const trackingId = this.route.snapshot.queryParamMap.get('trackingId');
-    const zip = this.route.snapshot.queryParamMap.get('zip');  // falls du es brauchst
+    // Werte aus localStorage holen
+    const raw = localStorage.getItem("pendingShipment");
+    if (!raw) return;
+
+    const pending = JSON.parse(raw);
+
+    const trackingId = pending.trackingId;
+    const zip = pending.zip;
 
     if (!trackingId || !zip) return;
 
-    this.shipmentService.getByTrackingIdAndZip(trackingId, Number(zip))
-      .subscribe(res => this.shipment = res);
+    // Shipment laden
+    this.shipmentService
+      .getByTrackingIdAndZip(trackingId, zip)
+      .subscribe(res => {
+        this.shipment = res;
+
+        //  Eintrag löschen, weil nicht mehr benötigt
+        localStorage.removeItem("pendingShipment");
+      });
   }
+
+  retryPayment() {
+    if (!this.shipment?.paymentUrl) return;
+
+    window.location.href = this.shipment.paymentUrl;
+  }
+
+
 }

@@ -34,6 +34,14 @@
                 <label>Stadt</label>
                 <input type="text" [(ngModel)]="sender.city" name="senderCity" placeholder="Hagenberg" required>
             </div>
+            <div class="field">
+                <label>Name</label>
+                <input type="text" [(ngModel)]="sender.name" name="senderName" placeholder="Huber Franz" required>
+            </div>
+            <div class="field">
+                <label>Land</label>
+                <input type="text" [(ngModel)]="sender.country" name="senderCountry" placeholder="Austria" required>
+            </div>
         </div>
 
         <div class="ui segment">
@@ -60,6 +68,15 @@
             <div class="field">
                 <label>Stadt</label>
                 <input type="text" [(ngModel)]="receiver.city" name="receiverCity" placeholder="Linz" required>
+            </div>
+            <div class="field">
+                <label>Name</label>
+                <input type="text" [(ngModel)]="receiver.name" name="receiverName" placeholder="Huber Franzine"
+                    required>
+            </div>
+            <div class="field">
+                <label>Land</label>
+                <input type="text" [(ngModel)]="receiver.country" name="receiverCountry" placeholder="Germany" required>
             </div>
         </div>
 

@@ -22,7 +22,7 @@ export class Notification {
   constructor(
     private notificationService: NotificationService,
     private sessionService: SessionService
-  ) { this.tracking.receiverAddress = new Address("", "", 0, ""); };
+  ) { this.tracking.receiverAddress.zip = undefined; };
 
 
   private validateInput(): { trackingId: string; zip: number; } | null {

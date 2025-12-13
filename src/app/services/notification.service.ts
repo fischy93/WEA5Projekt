@@ -17,23 +17,20 @@ export class NotificationService {
   }
 
   // POST /Notification
-  public AktivateNotification(trackingId: string, zip: number) {
-    const body = { trackingId, zip };
 
-    return this.http
-      .post(`${this.baseUrl}`, body)
-      .pipe(catchError(this.errorHandler));
+  public AktivateNotification(trackingId: string, zip: number) {
+    return this.http.post(
+      `${this.baseUrl}`,
+      { trackingId, zip }
+    );
   }
 
   // DELETE /Notification
   public DeaktivateNotification(trackingId: string, zip: number) {
-    const body = { trackingId, zip };
-
-    return this.http
-      .delete(`${this.baseUrl}`, {
-        body: body
-      })
-      .pipe(catchError(this.errorHandler));
+    return this.http.delete(
+      `${this.baseUrl}`,
+      { body: { trackingId, zip } }
+    );
   }
 
 }

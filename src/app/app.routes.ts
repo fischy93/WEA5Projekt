@@ -21,7 +21,7 @@ export const routes: Routes = [
     { path: 'contacts', component: ContactManagement, canActivate: [AuthGuard] },
     { path: 'notification', component: Notification, canActivate: [AuthGuard] },
     { path: 'stats', component: Statistics, canActivate: [AuthGuard] },
-    { path: 'customers', component: CustomerList },
+    //{ path: 'customers', component: CustomerList },
     { path: 'payment', component: PaymentSuccess },
 
 

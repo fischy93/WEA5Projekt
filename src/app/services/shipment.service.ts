@@ -24,10 +24,11 @@ export class ShipmentService {
       .pipe(catchError(this.errorHandler));
   }
 
-  create(newShipment: Shipment): Observable<{ createdShipment: Shipment }> {
-    return this.http.post<{ createdShipment: Shipment }>(this.baseUrl, newShipment)
+  create(newShipment: any): Observable<Shipment> {
+    return this.http.post<Shipment>(this.baseUrl, newShipment)
       .pipe(catchError(this.errorHandler));
   }
+
 
 
   getAllByCustomer(): Observable<Shipment[]> {

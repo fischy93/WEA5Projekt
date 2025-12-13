@@ -8,7 +8,8 @@
 
     <div class="field">
         <label>PLZ</label>
-        <input type="number" [(ngModel)]="tracking.receiverAddress.zip" name="statusZip">
+        <input type="text" name="notificationZip" [(ngModel)]="tracking.receiverAddress.zip" #zipModel="ngModel"
+            required pattern="^[0-9]{4}$" inputmode="numeric" maxlength="4" placeholder="4020" />
     </div>
 
     <button class="ui primary button" type="submit">

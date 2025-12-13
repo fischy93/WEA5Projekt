@@ -12,10 +12,11 @@ import { Parcel } from '../../shared/parcel';
 })
 export class PriceCalculator {
 
-  length: number = 0;
-  width: number = 0;
-  height: number = 0;
-  weight: number = 0;
+  length: number | null = null;
+  width: number | null = null;
+  height: number | null = null;
+  weight: number | null = null;
+
 
   price: number | null = null;
   errorMessage: string | null = null;
@@ -29,12 +30,19 @@ export class PriceCalculator {
     this.price = null;
 
     // **Validierung**
-    if (this.length <= 0 || this.width <= 0 || this.height <= 0 || this.weight <= 0) {
+    if (this.length == null ||
+      this.width == null ||
+      this.height == null ||
+      this.weight == null ||
+      this.length <= 0 ||
+      this.width <= 0 ||
+      this.height <= 0 ||
+      this.weight <= 0) {
       this.errorMessage = "Bitte alle Werte > 0 eingeben.";
       return;
     }
 
-    // **Parcel in dein bestehendes Modell übertragen**
+    // **Parcel in bestehendes Modell übertragen**
     const parcel = new Parcel();
     parcel.length = this.length;
     parcel.width = this.width;
@@ -53,7 +61,7 @@ export class PriceCalculator {
     });
   }
   isDecember(): boolean {
-    return new Date().getMonth() === 10; // Dezember = 11
+    return new Date().getMonth() === 11; // Dezember = 11
   }
 
 

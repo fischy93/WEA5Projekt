@@ -53,7 +53,7 @@ export class ShipmentCreate {
     // POST an Backend
     this.shipmentService.create(body as any).subscribe({
       next: (res) => {
-        this.createdShipment = res.createdShipment;
+        this.createdShipment = res as Shipment;
 
         // alles speichern, was ich nach dem Redirect brauche
         localStorage.setItem("pendingShipment", JSON.stringify({
